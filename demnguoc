@@ -1,0 +1,85 @@
+    <title>Đếm ngược đến ngày 15/08/2023</title>
+    <style>
+      #countdown {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30vh;
+      }
+
+      .countdown-box {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+        width: 120px;
+        height: 150px;
+        margin: 10px;
+      }
+
+      .countdown-box .value {
+        font-size: 4rem;
+      }
+
+      .countdown-box .label {
+        font-size: 1.5rem;
+      }
+    </style>
+  
+  
+    <div id="countdown">
+      <div class="countdown-box" id="days">
+        <div class="value"></div>
+        <div class="label">Ngày</div>
+      </div>
+      <div class="countdown-box" id="hours">
+        <div class="value"></div>
+        <div class="label">Giờ</div>
+      </div>
+      <div class="countdown-box" id="minutes">
+        <div class="value"></div>
+        <div class="label">Phút</div>
+      </div>
+      <div class="countdown-box" id="seconds">
+        <div class="value"></div>
+        <div class="label">Giây</div>
+      </div>
+    </div>
+
+    <script>
+      // Set the date we're counting down to
+      var countDownDate = new Date("August 15, 2023 07:00:00").getTime();
+
+      // Update the countdown every 1 second
+      var countdown = setInterval(function() {
+
+        // Get the current date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the countdown date
+        var distance = countDownDate - now;
+
+        // Calculate days, hours, minutes and seconds remaining
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the countdown in the HTML
+        document.getElementById("days").querySelector(".value").innerHTML = days;
+        document.getElementById("hours").querySelector(".value").innerHTML = hours;
+        document.getElementById("minutes").querySelector(".value").innerHTML = minutes;
+        document.getElementById("seconds").querySelector(".value").innerHTML = seconds;
+
+        // If the countdown is finished, display a message
+        if (distance < 0) {
+          clearInterval(countdown);
+          document.getElementById("countdown").innerHTML = "Đếm ngược đã kết thúc!";
+        }
+      }, 1000);
+    </script>
+  
